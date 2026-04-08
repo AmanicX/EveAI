@@ -30,8 +30,8 @@ def create_chat(name="New Chat"):
 
     config = {
         "name": name,
-        "personality": "default",
-        "model": None
+        "personality": "eve",   # 🔥 default personality
+        "model": None           # None = auto (FAST/SMART)
     }
 
     with open(_config_path(chat_id), "w", encoding="utf-8") as f:
@@ -55,7 +55,8 @@ def list_chats():
 
             chats.append({
                 "id": chat_id,
-                "name": config.get("name", "Chat")
+                "name": config.get("name", "Chat"),
+                "personality": config.get("personality", "eve")
             })
 
     return chats
@@ -69,6 +70,20 @@ def load_config(chat_id):
 def save_config(chat_id, config):
     with open(_config_path(chat_id), "w", encoding="utf-8") as f:
         json.dump(config, f, indent=2)
+
+
+# 🔥 NEW: switch personality
+def set_personality(chat_id, mode_name):
+    config = load_config(chat_id)
+    config["personality"] = mode_name.lower()
+    save_config(chat_id, config)
+
+
+# 🔥 NEW: set model manually
+def set_model(chat_id, model_name):
+    config = load_config(chat_id)
+    config["model"] = model_name
+    save_config(chat_id, config)
 
 
 def load_history(chat_id):
