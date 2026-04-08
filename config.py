@@ -1,5 +1,5 @@
 # ── Groq API ──────────────────────────────────────────────
-GROQ_API_KEY = "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"
+GROQ_API_KEY = "API-Not-Provided For Security Reasons"
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 # Free models on Groq
