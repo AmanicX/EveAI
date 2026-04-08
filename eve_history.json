@@ -1,0 +1,10 @@
+[
+  {
+    "role": "user",
+    "content": "hello give me list of good gamersupps products"
+  },
+  {
+    "role": "assistant",
+    "content": "- **Optimum Nutrition Gold Standard 100% Whey** – fast‑absorbing protein for muscle recovery.  \n- **Cellucor C4 Original Pre‑Workout** – caffeine, beta‑alanine, and creatine for energy and endurance.  \n- **Nootrobox Nootropics** – blend of L‑tyrosine, bacopa, and citicoline for focus.  \n- **Lyft Electrolytes** – sodium, potassium, magnesium for hydration during long sessions.  \n- **Creatine Monohydrate (Kaged Muscle)** – 5 g daily for strength and cognitive support.  \n- **BCAAs (Scivation Xtend)** – 5‑10 g during play to reduce fatigue.  \n- **Omega‑3 Fish Oil (Nordic Naturals)** – supports brain health and joint mobility."
+  }
+]

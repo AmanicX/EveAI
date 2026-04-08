@@ -1,0 +1,6 @@
+llama-3.1-8b-instant    560 t/sFast model, simple tasks, classifier
+llama-3.3-70b-versatile 280 t/sSmart model, complex reasoning
+openai/gpt-oss-120b     500 t/sBest quality, GPT-class
+openai/gpt-oss-20b      1000 t/sFastest, lightweight GPT
+meta-llama/llama-4-scout-17b-16e-instruct   750 t/sLatest Llama 4, vision capable
+qwen/qwen3-32b          400 t/sStrong reasoning, good alternative

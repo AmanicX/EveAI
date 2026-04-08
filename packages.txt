@@ -1,0 +1,3 @@
+pip packages for eve:
+
+requests edge-tts pygame duckduckgo-search rapidfuzz ddgs
