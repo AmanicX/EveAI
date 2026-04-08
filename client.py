@@ -2,7 +2,7 @@ import re
 import time
 import requests
 import json
-
+from personality_manager import load_personality, get_eve_profile
 from config import GROQ_API_KEY, GROQ_API_URL, MODEL, SYSTEM_PROMPT, FAST_MODEL
 from memory_store import format_memory_block
 from chat_manager import load_history, append_history, load_config
@@ -62,26 +62,33 @@ def _call_groq(messages: list, model: str = None, retries: int = 3) -> str:
 
 
 # 🔥 NEW
-def get_personality_prompt(chat_id):
+def get_personality_profile(chat_id):
     config = load_config(chat_id)
+    mode = config.get("personality", "eve")
 
-    try:
-        with open("data/personalities.json", "r", encoding="utf-8") as f:
-            personalities = json.load(f)
-    except:
-        personalities = {"default": SYSTEM_PROMPT}
+    success, error, profile = load_personality(mode)
 
-    return personalities.get(config.get("personality", "default"), SYSTEM_PROMPT)
+    if not success:
+        return get_eve_profile()
+
+    return profile
 
 
 # 🔥 NEW
 def get_active_model(chat_id, fallback_model):
     config = load_config(chat_id)
-    return config.get("model") or fallback_model
+    profile = get_personality_profile(chat_id)
+
+    # Priority:
+    # 1. Manual override (chat config)
+    # 2. Personality model
+    # 3. Classifier fallback
+    return config.get("model") or profile.get("model") or fallback_model
 
 
 def build_messages(chat_id, user_input, system_prompt=None, extra_system_blocks=None):
-    active_prompt = system_prompt or get_personality_prompt(chat_id)
+    profile = get_personality_profile(chat_id)
+    active_prompt = system_prompt or profile["system_prompt"]
 
     messages = [
         {"role": "system", "content": active_prompt},
